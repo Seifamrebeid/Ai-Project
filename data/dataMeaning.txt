@@ -1,0 +1,236 @@
+📊 COVID-19 Dataset — Column Meanings
+1️⃣ USMER
+
+Meaning: Type of medical unit where the patient was treated
+
+1 → Public health system
+
+2 → Private health system
+
+Why it matters:
+May reflect differences in care access and reporting.
+
+2️⃣ MEDICAL_UNIT
+
+Meaning: Code identifying the specific medical unit or hospital
+
+Why it matters:
+Mostly administrative. Often not very predictive on its own.
+
+3️⃣ SEX (you removed this)
+
+Meaning: Biological sex
+
+1 → Female
+
+2 → Male
+
+Status in your project:
+❌ Removed to avoid demographic bias.
+
+4️⃣ PATIENT_TYPE → HOSPITALIZED (your renamed version)
+
+Original meaning:
+
+1 → Returned home (outpatient)
+
+2 → Hospitalized
+
+Your final encoding:
+
+1 → Hospitalized
+
+0 → Not hospitalized
+
+Why it matters:
+Strong indicator of disease severity.
+
+5️⃣ DATE_DIED (removed)
+
+Meaning: Date of death (if applicable)
+
+Status:
+❌ Removed due to data leakage (happens after diagnosis).
+
+6️⃣ INTUBED
+
+Meaning: Whether the patient was intubated
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Indicates severe respiratory failure.
+
+7️⃣ PNEUMONIA
+
+Meaning: Whether the patient developed pneumonia
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Strongly associated with COVID severity.
+
+8️⃣ AGE
+
+Meaning: Patient age (years)
+
+Why it matters:
+Age is a major risk factor for COVID complications.
+
+9️⃣ PREGNANT
+
+Meaning: Whether the patient was pregnant
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Special risk group with different clinical handling.
+
+🔟 DIABETES
+
+Meaning: Whether the patient has diabetes
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Diabetes increases COVID risk and complications.
+
+1️⃣1️⃣ COPD
+
+Meaning: Chronic Obstructive Pulmonary Disease
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Pre-existing lung disease worsens COVID outcomes.
+
+1️⃣2️⃣ ASTHMA
+
+Meaning: Whether the patient has asthma
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Respiratory condition that may affect infection severity.
+
+1️⃣3️⃣ INMSUPR
+
+Meaning: Immunosuppressed patient
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Weakened immune systems increase infection risk.
+
+1️⃣4️⃣ HIPERTENSION
+
+Meaning: High blood pressure
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Common comorbidity in severe COVID cases.
+
+1️⃣5️⃣ OTHER_DISEASE
+
+Meaning: Other chronic diseases
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Captures additional health risks not listed separately.
+
+1️⃣6️⃣ CARDIOVASCULAR
+
+Meaning: Cardiovascular disease
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Heart disease significantly increases COVID mortality risk.
+
+1️⃣7️⃣ OBESITY
+
+Meaning: Obesity condition
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Obesity is a major COVID risk factor.
+
+1️⃣8️⃣ RENAL_CHRONIC
+
+Meaning: Chronic kidney disease
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Affects immune response and treatment outcomes.
+
+1️⃣9️⃣ TOBACCO
+
+Meaning: Tobacco use
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Smoking affects lung health and COVID severity.
+
+2️⃣0️⃣ ICU
+
+Meaning: Admission to Intensive Care Unit
+
+1 → Yes
+
+2 → No
+
+Why it matters:
+Strong indicator of critical illness.
+
+2️⃣1️⃣ CLASIFFICATION_FINAL
+
+Meaning: Final COVID diagnosis result
+
+1–3 → COVID Positive
+
+4–7 → COVID Negative
+
+Status in your project:
+✔ Used to create target variable
+❌ Then removed to prevent leakage
+
+2️⃣2️⃣ covid (your target variable)
+
+Meaning: Final binary label for ML
+
+1 → COVID Positive
+
+0 → COVID Negative
+
+This is what your model predicts.
