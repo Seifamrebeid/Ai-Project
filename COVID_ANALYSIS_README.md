@@ -10,11 +10,14 @@ This project adapts the heart disease prediction analysis to work with COVID-19 
 
 **Dataset**: `data/Covid_Data.csv` - Over 1 million patient records from Mexico's COVID-19 surveillance system
 
+**⚡ Fast Mode**: By default, the notebook loads a 100K row sample for faster processing (5-10 minutes vs 20-30 minutes for full dataset)
+
 ## 📊 Dataset Information
 
 ### Source Data
 - **Location**: `data/Covid_Data.csv`
-- **Size**: 1,048,576 rows × 21 columns
+- **Full Size**: 1,048,576 rows × 21 columns
+- **Default Sample**: 100,000 rows (adjustable in Cell 9)
 - **Data Dictionary**: See `data/dataMeaning.txt` for detailed column descriptions
 
 ### Key Features
@@ -110,7 +113,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 2. **Execute all cells**:
    - Click "Run All" in Jupyter
    - Or execute cells sequentially from top to bottom
-   - **Note**: Processing time is 20-30 minutes due to large dataset (1M+ rows)
+   - **Note**: Default processing time is 5-10 minutes (100K sample). For full dataset (1M+ rows), set `SAMPLE_SIZE = None` in Cell 9 (~20-30 minutes)
 
 3. **Review outputs**:
    - Data exploration and visualization
@@ -119,10 +122,13 @@ pip install pandas numpy matplotlib seaborn scikit-learn
    - Final model evaluation and validation
 
 ### Important Notes
-- ⏱️ **Processing Time**: Expect 20-30 minutes for full execution
-- 💾 **Memory Usage**: Large dataset may require 4GB+ RAM
+- ⏱️ **Processing Time**: 
+  - Default (100K sample): 5-10 minutes
+  - Full dataset (1M+ rows): 20-30 minutes (change `SAMPLE_SIZE = None` in Cell 9)
+- 💾 **Memory Usage**: Sample uses ~1GB, full dataset may require 4GB+ RAM
 - 📊 **Class Imbalance**: COVID+ and COVID- may not be balanced
 - 🔍 **Train/Test Split**: 90/10 due to large dataset size
+- ⚡ **Adjust Sample**: Change `SAMPLE_SIZE` in Cell 9 (e.g., 10000, 50000, 250000, or None for full)
 
 ## 📈 Analysis Workflow
 

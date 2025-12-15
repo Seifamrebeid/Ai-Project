@@ -11,7 +11,8 @@ jupyter notebook covid_disease_analysis.ipynb
 Click: **Cell → Run All**
 
 ### Step 3: Wait
-⏱️ Processing time: **20-30 minutes** (1M+ rows)
+⏱️ Processing time: **5-10 minutes** (default: 100K rows sample)
+- For full dataset (1M+ rows): 20-30 minutes (change `SAMPLE_SIZE = None` in Cell 9)
 
 ### Step 4: Review Results
 Scroll through the outputs to see:
@@ -26,7 +27,7 @@ Scroll through the outputs to see:
 
 ### Automatic Processing
 The notebook will automatically:
-1. ✅ Load COVID-19 data (1M+ patient records)
+1. ✅ Load COVID-19 data sample (default: 100K rows for speed)
 2. ✅ Preprocess binary features (1/2 → 0/1)
 3. ✅ Create target variable (COVID positive/negative)
 4. ✅ Handle missing values
@@ -36,11 +37,16 @@ The notebook will automatically:
 8. ✅ Provide final accuracy metrics
 
 ### Expected Outputs
-- **Data Shape**: ~1,048,576 rows × 15 columns (after preprocessing)
+- **Data Shape**: ~100,000 rows × 15 columns (default sample, after preprocessing)
 - **Target Distribution**: COVID Positive vs Negative counts
 - **Best Model**: Identified with accuracy score
 - **ROC Curve**: Diagnostic ability visualization
 - **Confusion Matrix**: Detailed error analysis
+
+### 📊 Sample Size Options
+- **Fast (Default)**: 100K rows → 5-10 minutes
+- **Medium**: 250K rows → 10-15 minutes (change `SAMPLE_SIZE = 250000`)
+- **Full Dataset**: 1M+ rows → 20-30 minutes (change `SAMPLE_SIZE = None`)
 
 ---
 
@@ -52,10 +58,28 @@ If you've used `heart_disease_analysis.ipynb` before:
 |---------|---------------|----------|
 | **Notebook** | heart_disease_analysis.ipynb | covid_disease_analysis.ipynb |
 | **Dataset** | dataset/heart.csv | data/Covid_Data.csv |
-| **Size** | 300 rows | 1M+ rows |
-| **Runtime** | 5-10 min | 20-30 min |
+| **Size** | 300 rows | 100K rows (default sample) |
+| **Runtime** | 5-10 min | 5-10 min (sample) / 20-30 min (full) |
 | **Features** | 13 | 14 (after preprocessing) |
 | **New Step** | None | Cell 11: COVID preprocessing |
+
+---
+
+## ⚡ Adjusting Sample Size for Speed
+
+**Cell 9** contains the data loading with a `SAMPLE_SIZE` parameter:
+
+```python
+SAMPLE_SIZE = 100000  # Default: 100K rows
+```
+
+**To change the speed:**
+- **Faster (10K rows, ~2-3 min)**: `SAMPLE_SIZE = 10000`
+- **Default (100K rows, ~5-10 min)**: `SAMPLE_SIZE = 100000`
+- **Medium (250K rows, ~10-15 min)**: `SAMPLE_SIZE = 250000`
+- **Full dataset (1M+ rows, ~20-30 min)**: `SAMPLE_SIZE = None`
+
+Just edit Cell 9 and change the number, then run all cells.
 
 ---
 

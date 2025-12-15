@@ -17,9 +17,28 @@ This document summarizes the adaptation of `heart_disease_analysis.ipynb` to `co
 | Aspect | Heart Disease | COVID-19 |
 |--------|---------------|----------|
 | File | `dataset/heart.csv` | `data/Covid_Data.csv` |
-| Rows | ~300 | 1,048,576 |
+| Rows | ~300 | 100K (default sample) / 1M+ (full) |
 | Columns | 13 | 21 → 15 (after preprocessing) |
 | Source | UCI ML Repository | Mexican Health System |
+| Processing | ~5-10 min | ~5-10 min (sample) / 20-30 min (full) |
+
+#### ⚡ Fast Mode Feature (NEW in Cell 9)
+Added `SAMPLE_SIZE` parameter for faster processing:
+
+```python
+# Default: Load 100K rows for faster iteration
+SAMPLE_SIZE = 100000  # Change to None for full dataset
+
+if SAMPLE_SIZE is not None:
+    df = pd.read_csv('data/Covid_Data.csv', nrows=SAMPLE_SIZE)
+else:
+    df = pd.read_csv('data/Covid_Data.csv')
+```
+
+**Benefits:**
+- Default 100K sample: 5-10 minutes (vs 20-30 for full dataset)
+- Maintains statistical validity for model training
+- Easily adjustable for different needs
 
 #### New Preprocessing Step (Cell 11)
 Added COVID-specific data transformation:
@@ -75,7 +94,7 @@ All markdown cells updated:
 jupyter notebook covid_disease_analysis.ipynb
 ```
 - Click "Run All"
-- Wait 20-30 minutes (large dataset)
+- Wait 5-10 minutes (default 100K sample) or 20-30 minutes (full dataset if SAMPLE_SIZE=None)
 - Review results
 
 ### Option 2: Use Original Heart Disease Analysis
@@ -100,12 +119,13 @@ jupyter notebook heart_disease_analysis.ipynb
 - **Heart**: Standard NaN/null
 - **COVID**: Special codes (97, 98, 99) mean missing/unknown
 
-### 4. Dataset Size Impact
-- **Heart**: Small dataset, quick processing
-- **COVID**: Large dataset (1M+ rows), requires:
-  - More RAM (4GB+)
-  - Longer processing time (20-30 min)
+### 4. Dataset Size Impact & Speed
+- **Heart**: Small dataset (300 rows), quick processing (~5-10 min)
+- **COVID**: 
+  - **Default Sample (100K rows)**: ~5-10 min, 1GB RAM
+  - **Full Dataset (1M+ rows)**: ~20-30 min, 4GB+ RAM (change `SAMPLE_SIZE = None`)
   - 90/10 train/test split instead of 80/20
+  - Adjustable sample size for different needs
 
 ### 5. Feature Interpretation
 - **Heart**: Medical measurements (quantitative)
