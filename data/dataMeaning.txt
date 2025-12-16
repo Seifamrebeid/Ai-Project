@@ -1,236 +1,232 @@
-📊 COVID-19 Dataset — Column Meanings
-1️⃣ USMER
-
-Meaning: Type of medical unit where the patient was treated
-
-1 → Public health system
-
-2 → Private health system
-
-Why it matters:
-May reflect differences in care access and reporting.
-
-2️⃣ MEDICAL_UNIT
-
-Meaning: Code identifying the specific medical unit or hospital
-
-Why it matters:
-Mostly administrative. Often not very predictive on its own.
-
-3️⃣ SEX (you removed this)
-
-Meaning: Biological sex
-
-1 → Female
-
-2 → Male
-
-Status in your project:
-❌ Removed to avoid demographic bias.
-
-4️⃣ PATIENT_TYPE → HOSPITALIZED (your renamed version)
-
-Original meaning:
-
-1 → Returned home (outpatient)
-
-2 → Hospitalized
-
-Your final encoding:
-
-1 → Hospitalized
-
-0 → Not hospitalized
-
-Why it matters:
-Strong indicator of disease severity.
-
-5️⃣ DATE_DIED (removed)
-
-Meaning: Date of death (if applicable)
-
-Status:
-❌ Removed due to data leakage (happens after diagnosis).
-
-6️⃣ INTUBED
-
-Meaning: Whether the patient was intubated
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Indicates severe respiratory failure.
-
-7️⃣ PNEUMONIA
-
-Meaning: Whether the patient developed pneumonia
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Strongly associated with COVID severity.
-
-8️⃣ AGE
-
-Meaning: Patient age (years)
-
-Why it matters:
-Age is a major risk factor for COVID complications.
-
-9️⃣ PREGNANT
-
-Meaning: Whether the patient was pregnant
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Special risk group with different clinical handling.
-
-🔟 DIABETES
-
-Meaning: Whether the patient has diabetes
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Diabetes increases COVID risk and complications.
-
-1️⃣1️⃣ COPD
-
-Meaning: Chronic Obstructive Pulmonary Disease
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Pre-existing lung disease worsens COVID outcomes.
-
-1️⃣2️⃣ ASTHMA
-
-Meaning: Whether the patient has asthma
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Respiratory condition that may affect infection severity.
-
-1️⃣3️⃣ INMSUPR
-
-Meaning: Immunosuppressed patient
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Weakened immune systems increase infection risk.
-
-1️⃣4️⃣ HIPERTENSION
-
-Meaning: High blood pressure
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Common comorbidity in severe COVID cases.
-
-1️⃣5️⃣ OTHER_DISEASE
-
-Meaning: Other chronic diseases
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Captures additional health risks not listed separately.
-
-1️⃣6️⃣ CARDIOVASCULAR
-
-Meaning: Cardiovascular disease
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Heart disease significantly increases COVID mortality risk.
-
-1️⃣7️⃣ OBESITY
-
-Meaning: Obesity condition
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Obesity is a major COVID risk factor.
-
-1️⃣8️⃣ RENAL_CHRONIC
-
-Meaning: Chronic kidney disease
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Affects immune response and treatment outcomes.
-
-1️⃣9️⃣ TOBACCO
-
-Meaning: Tobacco use
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Smoking affects lung health and COVID severity.
-
-2️⃣0️⃣ ICU
-
-Meaning: Admission to Intensive Care Unit
-
-1 → Yes
-
-2 → No
-
-Why it matters:
-Strong indicator of critical illness.
-
-2️⃣1️⃣ CLASIFFICATION_FINAL
-
-Meaning: Final COVID diagnosis result
-
-1–3 → COVID Positive
-
-4–7 → COVID Negative
-
-Status in your project:
-✔ Used to create target variable
-❌ Then removed to prevent leakage
-
-2️⃣2️⃣ covid (your target variable)
-
-Meaning: Final binary label for ML
-
-1 → COVID Positive
-
-0 → COVID Negative
-
-This is what your model predicts.
+Wisconsin Breast Cancer Dataset - Feature Descriptions
+
+================================================================================
+DATASET OVERVIEW
+================================================================================
+
+Source: Wisconsin Breast Cancer Dataset (WBCD)
+Samples: 569 breast cancer cases
+Features: 30 numerical features + 1 ID + 1 target (diagnosis)
+Target: M = Malignant (cancer), B = Benign (non-cancer)
+
+All features are computed from digitized images of fine needle aspirate (FNA) 
+of a breast mass. They describe characteristics of cell nuclei present in the image.
+
+================================================================================
+FEATURE GROUPS
+================================================================================
+
+For each of the 10 characteristics below, THREE measurements are provided:
+  1. _mean    : Mean value across all cells
+  2. _se      : Standard error (uncertainty of the mean)
+  3. _worst   : Mean of the three largest (most abnormal) values
+
+Total: 10 characteristics × 3 measurements = 30 features
+
+================================================================================
+10 CORE CHARACTERISTICS
+================================================================================
+
+1. RADIUS
+   - Definition: Mean distance from center to perimeter of the cell nucleus
+   - Unit: Typically in micrometers
+   - Interpretation: Larger radius may indicate abnormal cell growth
+   - Features: radius_mean, radius_se, radius_worst
+
+2. TEXTURE
+   - Definition: Standard deviation of gray-scale values in the image
+   - Unit: Intensity units
+   - Interpretation: Irregular texture may indicate malignancy
+   - Features: texture_mean, texture_se, texture_worst
+
+3. PERIMETER
+   - Definition: Total perimeter of the cell nucleus
+   - Unit: Typically in micrometers
+   - Interpretation: Larger perimeter correlates with larger cells
+   - Features: perimeter_mean, perimeter_se, perimeter_worst
+
+4. AREA
+   - Definition: Total area of the cell nucleus
+   - Unit: Square micrometers
+   - Interpretation: Malignant cells often have larger areas
+   - Features: area_mean, area_se, area_worst
+
+5. SMOOTHNESS
+   - Definition: Local variation in radius lengths
+   - Range: 0.0 to 1.0 (lower = smoother)
+   - Interpretation: Rough/irregular cells may be cancerous
+   - Features: smoothness_mean, smoothness_se, smoothness_worst
+
+6. COMPACTNESS
+   - Definition: (perimeter² / area) - 1.0
+   - Interpretation: Measures shape irregularity
+   - Higher values indicate more irregular shapes
+   - Features: compactness_mean, compactness_se, compactness_worst
+
+7. CONCAVITY
+   - Definition: Severity of concave portions of the contour
+   - Interpretation: Malignant cells often have indented contours
+   - Higher values indicate more severe concavity
+   - Features: concavity_mean, concavity_se, concavity_worst
+
+8. CONCAVE POINTS
+   - Definition: Number of concave portions of the contour
+   - Interpretation: More concave points suggest irregular shape
+   - Strong indicator of malignancy
+   - Features: concave points_mean, concave points_se, concave points_worst
+
+9. SYMMETRY
+   - Definition: Symmetry of the cell nucleus
+   - Range: 0.0 to 1.0 (higher = more symmetric)
+   - Interpretation: Cancer cells tend to be asymmetric
+   - Features: symmetry_mean, symmetry_se, symmetry_worst
+
+10. FRACTAL DIMENSION
+    - Definition: "Coastline approximation" - 1
+    - Interpretation: Measures complexity of the boundary
+    - Higher values indicate more complex, irregular boundaries
+    - Features: fractal_dimension_mean, fractal_dimension_se, fractal_dimension_worst
+
+================================================================================
+COMPLETE FEATURE LIST (30 features)
+================================================================================
+
+MEAN FEATURES (10):
+  1. radius_mean
+  2. texture_mean
+  3. perimeter_mean
+  4. area_mean
+  5. smoothness_mean
+  6. compactness_mean
+  7. concavity_mean
+  8. concave points_mean
+  9. symmetry_mean
+  10. fractal_dimension_mean
+
+STANDARD ERROR FEATURES (10):
+  11. radius_se
+  12. texture_se
+  13. perimeter_se
+  14. area_se
+  15. smoothness_se
+  16. compactness_se
+  17. concavity_se
+  18. concave points_se
+  19. symmetry_se
+  20. fractal_dimension_se
+
+WORST FEATURES (10):
+  21. radius_worst
+  22. texture_worst
+  23. perimeter_worst
+  24. area_worst
+  25. smoothness_worst
+  26. compactness_worst
+  27. concavity_worst
+  28. concave points_worst
+  29. symmetry_worst
+  30. fractal_dimension_worst
+
+================================================================================
+ADDITIONAL COLUMNS
+================================================================================
+
+ID
+  - Unique identifier for each patient/sample
+  - No predictive value (dropped in modeling)
+
+DIAGNOSIS (Target Variable)
+  - M = Malignant (cancer) → encoded as 1
+  - B = Benign (non-cancer) → encoded as 0
+  - This is what we're trying to predict
+
+================================================================================
+FEATURE IMPORTANCE INSIGHTS
+================================================================================
+
+Based on typical machine learning model analysis:
+
+MOST PREDICTIVE FEATURES (usually):
+  1. radius_worst       - Largest abnormal radius
+  2. perimeter_worst    - Largest abnormal perimeter
+  3. area_worst         - Largest abnormal area
+  4. concave points_worst - Most severe indentations
+  5. concavity_worst    - Most severe concavity
+
+WHY "WORST" FEATURES MATTER:
+  - Represent the most abnormal cells in the sample
+  - Even a few highly abnormal cells can indicate cancer
+  - Doctors focus on worst-case cells when diagnosing
+
+FEATURE CORRELATIONS:
+  - radius, perimeter, area are highly correlated (all measure size)
+  - concavity and concave points are correlated (shape irregularity)
+  - Models handle multicollinearity differently (ensemble methods robust)
+
+================================================================================
+DATA QUALITY
+================================================================================
+
+MISSING VALUES: None (complete dataset)
+OUTLIERS: Present but medically valid (not removed)
+DATA TYPE: All features are continuous (float64)
+SCALE: Features have different ranges
+  - area: hundreds to thousands
+  - smoothness: 0.05 to 0.20
+  - Solution: Apply StandardScaler for distance-based algorithms
+
+================================================================================
+MEDICAL CONTEXT
+================================================================================
+
+CLINICAL USE:
+  - Fine Needle Aspiration (FNA) is a minimally invasive procedure
+  - Cell images are analyzed to determine if tumor is cancerous
+  - This dataset helps automate/support diagnosis
+
+CRITICAL CONSIDERATIONS:
+  - False Negatives (missing cancer) are most dangerous
+  - False Positives can be verified with additional tests
+  - Models should prioritize high recall (sensitivity)
+
+TARGET DISTRIBUTION:
+  - ~37% Malignant (212 cases)
+  - ~63% Benign (357 cases)
+  - Reasonably balanced (no severe class imbalance)
+
+================================================================================
+REFERENCES
+================================================================================
+
+Original Dataset:
+  - UCI Machine Learning Repository
+  - Donated by: Dr. William H. Wolberg, University of Wisconsin Hospitals
+
+Citation:
+  W.N. Street, W.H. Wolberg and O.L. Mangasarian. 
+  Nuclear feature extraction for breast tumor diagnosis. 
+  IS&T/SPIE 1993 International Symposium on Electronic Imaging: Science 
+  and Technology, volume 1905, pages 861-870, San Jose, CA, 1993.
+
+================================================================================
+USAGE IN PROJECT
+================================================================================
+
+PREPROCESSING:
+  1. Drop 'id' column (no predictive value)
+  2. Encode 'diagnosis': M→1, B→0
+  3. Separate features (X) and target (y)
+  4. Apply StandardScaler for distance-based models
+
+MODELING:
+  - All 30 features used for prediction
+  - No feature selection required (all medically relevant)
+  - Tree-based models: use raw features
+  - Distance-based models: use scaled features
+
+INTERPRETATION:
+  - Feature importance reveals key diagnostic indicators
+  - Validates medical knowledge about cancer characteristics
+  - Helps doctors understand model predictions
+
+================================================================================
